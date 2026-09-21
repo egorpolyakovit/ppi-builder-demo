@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PPI Builder Demo</title>
+  <style>
+    :root{--bg:#0b1220;--panel:#10182b;--text:#e6eef7;--muted:#9fb0c3;--accent:#5dd0ff;--border:#21314a}
+    *{box-sizing:border-box} body{margin:0;padding:24px;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    main{max-width:980px;margin:auto}.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 0 16px}
+    h1{margin-top:0}.muted{color:var(--muted);font-size:14px;line-height:1.5}button{border:1px solid var(--border);background:#16213a;color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;margin-right:8px}
+    button:hover{border-color:var(--accent)} pre{white-space:pre-wrap;word-break:break-word;background:#09101d;padding:12px;border-radius:10px;max-height:420px;overflow:auto}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{padding:12px;background:#0d1526;border-radius:10px}.metric b{display:block;font-size:22px;margin-top:4px}
+    input{display:block;margin-top:8px;color:var(--muted)}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="panel">
+    <h1>PPI Builder Demo</h1>
+    <p class="muted">Simplified public demo of an internal Smart Indexes data-processing workflow. It demonstrates the pipeline architecture, validation, aggregation and JSON export without exposing production datasets, matching rules, thresholds, coefficients or proprietary methodology details.</p>
+  </section>
+
+  <section class="panel">
+    <h3>Input</h3>
+    <p class="muted">Load a CSV with synthetic/sample transactions, or use the bundled sample dataset.</p>
+    <input id="file" type="file" accept=".csv" />
+    <br/>
+    <button id="sample">Load sample data</button>
+    <button id="run">Run builder</button>
+    <button id="download" disabled>Export JSON</button>
+  </section>
+
+  <section class="panel grid">
+    <div class="metric">Rows loaded<b id="rows">0</b></div>
+    <div class="metric">Valid observations<b id="valid">0</b></div>
+    <div class="metric">Series generated<b id="series">0</b></div>
+    <div class="metric">Status<b id="status" style="font-size:16px">Idle</b></div>
+  </section>
+
+  <section class="panel">
+    <h3>Output preview</h3>
+    <pre id="output">Run the builder to see JSON output.</pre>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
